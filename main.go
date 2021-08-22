@@ -78,7 +78,6 @@ func main() {
 			}
 		}
 	}
-	fmt.Printf("Pubkey: %+v\n", pubkey)
 
 	// setup gRPC connection
 	nodeURLGrpc := conf.GrpcNodeURL
@@ -168,6 +167,8 @@ func main() {
 				if result.Long {
 					err = submitOrder(marketID, 1, result.Price, proto.Side_SIDE_BUY, walletConfig, token.Token, pubkey.Pub, dataClient, tradingClient)
 					if err != nil {
+						log.Printf("%+v\n", err)
+						log.Printf("%+v\n", vegagrpc.ErrorDetail(err))
 						panic(err)
 					}
 				}
@@ -175,6 +176,8 @@ func main() {
 				if result.Short {
 					err = submitOrder(marketID, 1, result.Price, proto.Side_SIDE_SELL, walletConfig, token.Token, pubkey.Pub, dataClient, tradingClient)
 					if err != nil {
+						log.Printf("%+v\n", err)
+						log.Printf("%+v\n", vegagrpc.ErrorDetail(err))
 						panic(err)
 					}
 				}

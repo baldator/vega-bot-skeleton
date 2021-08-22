@@ -93,12 +93,14 @@ func submitOrder(marketID string, quantity uint64, price uint64, side proto.Side
 		MarketId:    marketID,
 		Side:        side,
 		TimeInForce: proto.Order_TIME_IN_FORCE_GTT,
-		Type:        proto.Order_TYPE_LIMIT,
-		ExpiresAt:   expireAt,
+		Type:        proto.Order_TYPE_MARKET,
 	}
 
 	order := api.PrepareSubmitOrderRequest{Submission: &orderSubmission}
 	orderRequest, err := tradingClient.PrepareSubmitOrder(context.Background(), &order)
+	if err != nil {
+		return err
+	}
 	data := orderRequest.Blob
 	sEnc := base64.StdEncoding.EncodeToString([]byte(data))
 	_, err = SignTransaction(walletConfig, walletToken, walletPubkey, string(sEnc))
