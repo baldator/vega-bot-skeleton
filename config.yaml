@@ -1,0 +1,23 @@
+# Vega parameters
+GrpcNodeUrl: "n06.testnet.vega.xyz:3002"
+VegaEventsBatchSize: 15000
+Debug: true
+MarketName: "Tesla Quarterly (31 Dec 2021)"
+
+# Wallet parameters
+WalletServerURL: "http://localhost:1789"
+WalletName: "aa"
+WalletPassphrase: "aa"
+
+# Sentry parameters
+SentryEnabled: true
+SentryDsn: "https://d133532a65bd46299c0dfe80a0109085@o224694.ingest.sentry.io/5656741"
+
+# Prometheus parametes
+PrometheusEnabled: true
+PrometheusPort: 2112
+
+# Strategy config
+CandlesBacklog: 5
+Strategy: "debug"
+TransactionQuantity: 2
